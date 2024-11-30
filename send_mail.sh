@@ -3,7 +3,7 @@
 # Definindo as variaveis
 assunto="Atualização do Agile Release Plan"
 corpo_email="Olá, prezado(a). Por favor, peço que atualize o agile release plan do seu projeto até sexta-feira.\n\nNome do projeto: %s\nLink do projeto: %s\n\nObrigado,\nSE Team."
-from_email= "kaique.dultra@outlook.com"
+from_email="kaique.dultra@outlook.com"
 
 # Caminho para o arquivo JSON
 json_file="projects.json"
