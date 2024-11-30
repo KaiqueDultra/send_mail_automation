@@ -1,0 +1,20 @@
+[
+    {
+        "project_name": "Project A",
+        "link_confluence": "https://confluence.exemplo.com/projeto-a",
+        "email_pls": "usuario1@exemplo.com, usuario2@exemplo.com",
+        "email_bcc": "bcc1@exemplo.com"
+    },
+    {
+        "project_name": "Project B",
+        "link_confluence": "https://confluence.exemplo.com/projeto-b",
+        "email_pls": "usuario3@exemplo.com, usuario4@exemplo.com",
+        "email_bcc": "bcc2@exemplo.com"
+    },
+    {
+        "project_name": "Project C",
+        "link_confluence": "https://confluence.exemplo.com/projeto-c",
+        "email_pls": "usuario5@exemplo.com, usuario6@exemplo.com",
+        "email_bcc": "bcc3@exemplo.com"
+    }
+]

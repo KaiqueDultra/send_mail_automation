@@ -1,0 +1,24 @@
+name: enviar emails semanais
+
+on:
+  workflow_dispatch:
+
+jobs:
+  enviar_emails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq mailutils
+      
+      - name: Copy JSON file to work directory
+        run: |
+          echo "$PROJECTS.JSON" > projects.json
+      
+      - name: Send emails
+        run: |
+          base send_mail.sh
