@@ -21,4 +21,4 @@ jobs:
       
       - name: Send emails
         run: |
-          base send_mail.sh
+          bash send_mail.sh
