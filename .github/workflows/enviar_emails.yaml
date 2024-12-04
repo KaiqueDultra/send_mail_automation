@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq bsd-mailx
+          sudo apt-get install -y jq msmtp
       
       - name: Check if json file exist
         run: |
@@ -23,5 +23,7 @@ jobs:
           fi
       
       - name: Send emails
+        env:
+          OUTLOOK_APP_PASSWORD: ${{ secrets.OUTLOOK_APP_PASSWORD }}
         run: |
-          bash send_mail.sh
+            bash enviar_emails.sh
