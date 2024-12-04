@@ -14,11 +14,12 @@ json_file="projects.json"
 
 # Criando o arquivo de configuração do msmtp
 echo "defaults" > ~/.msmtprc
+echo "account default" >> ~/.msmtprc  # Definindo a conta como 'default'
 echo "auth on" >> ~/.msmtprc
 echo "tls on" >> ~/.msmtprc
 echo "tls_trust_file /etc/ssl/certs/ca-certificates.crt" >> ~/.msmtprc
-echo "host $smtp_server" >> ~/.msmtprc 
-echo "port $smtp_port" >> ~/.msmtprc     
+echo "host $smtp_server" >> ~/.msmtprc   # Configuração do servidor SMTP
+echo "port $smtp_port" >> ~/.msmtprc     # Configuração da porta SMTP
 echo "from $from_email" >> ~/.msmtprc
 echo "user $smtp_user" >> ~/.msmtprc
 echo "password $smtp_pass" >> ~/.msmtprc
