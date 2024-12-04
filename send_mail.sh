@@ -36,11 +36,14 @@ jq -c '.[]' "$json_file" | while read -r project; do
     # Substituindo as variáveis no corpo do email
     corpo_email_formatado=$(printf "$corpo_email" "$project_name" "$link_confluence")
 
-    # Enviando email usando mailx, incluindo o destinatário principal, CC e BCC
-    echo -e "$corpo_email_formatado" | msmtp -s "$assunto" \
-        --cc "$email_pls" \
-        --bcc "$email_bcc"
-        "$email_pls" # Destinatário principal (To)
+    # Enviando email usando msmtp (com suporte ao MSTP do Outlook)
+    # A opcao -S é usada para definir o assunto diretamente, e os parametros --cc e --bcc para definir os destinatarios
+    echo -e "$corpo_email_formatado" | msmtp \
+        --subject="$assunto" \
+        --from="$from_email" \
+        --cc="$email_pls" \
+        --bcc="$email_bcc"
+        "$email_pls" # O destinatario principal 
 
     echo "Email enviado para $email_pls (BCC: $email_bcc)"
 done
