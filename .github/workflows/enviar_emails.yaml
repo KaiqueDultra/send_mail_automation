@@ -26,4 +26,4 @@ jobs:
         env:
           OUTLOOK_APP_PASSWORD: ${{ secrets.OUTLOOK_APP_PASSWORD }}
         run: |
-            bash enviar_emails.sh
+            bash send_mail.sh
