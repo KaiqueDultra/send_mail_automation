@@ -3,10 +3,10 @@
 # Definindo as variáveis
 assunto="Atualização do Agile Release Plan"
 corpo_email="Olá, prezado(a). Por favor, peço que atualize o agile release plan do seu projeto até sexta-feira.\n\nNome do projeto: %s\nLink do projeto: %s\n\nObrigado,\nSE Team."
-from_email="kaique.dultra@outlook.com"
+from_email="kaiquedultra@outlook.com"
 smtp_server="smtp.office365.com"
 smtp_port="587"
-smtp_user="kaique.dultra@outlook.com"
+smtp_user="kaiquedultra@outlook.com"
 smtp_pass="$OUTLOOK_APP_PASSWORD"  # Usando o segredo como variável de ambiente
 
 # Caminho para o arquivo JSON
