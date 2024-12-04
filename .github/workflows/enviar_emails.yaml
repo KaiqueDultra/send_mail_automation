@@ -15,9 +15,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq mailutils
       
-      - name: Copy JSON file to work directory
+      - name: Check if json file exist
         run: |
-          echo "$PROJECTS.JSON" > projects.json
+          if [ ! -f "projects.json" ]; then
+            echo "File not found: projects.json"
+            exit 1
+          fi
       
       - name: Send emails
         run: |
