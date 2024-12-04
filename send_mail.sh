@@ -19,9 +19,13 @@ jq -c '.[]' "$json_file" | while read -r project; do
     # Substituindo as variaveis no corpo do email
     corpo_email_formatado=$(printf "$corpo_email" "$project_name" "$link_confluence")
 
+    # Definindo os destinatarios principais
+    to_email="$email_pls"
+
     # Enviando email usando o comando mail ou sendmail
     echo -e "$corpo_email_formatado" | mailx -s "$assunto" \
         -r "$from_email" \
+        -t "$to_email" \
         -c "$email_pls" \
         -b "$email_bcc"
 
