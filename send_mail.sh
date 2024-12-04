@@ -3,16 +3,16 @@
 # Definindo as variáveis
 assunto="Atualização do Agile Release Plan"
 corpo_email="Olá, prezado(a). Por favor, peço que atualize o agile release plan do seu projeto até sexta-feira.\n\nNome do projeto: %s\nLink do projeto: %s\n\nObrigado,\nSE Team."
-from_email="kaiquedultra@outlook.com"
+from_email="kaique.dultra@outlook.com"
 smtp_server="smtp.office365.com"
 smtp_port="587"
-smtp_user="kaiquedultra@outlook.com"
-smtp_pass="$OUTLOOK_APP_PASSWORD"
+smtp_user="kaique.dultra@outlook.com"
+smtp_pass="$OUTLOOK_APP_PASSWORD"  # Usando o segredo como variável de ambiente
 
 # Caminho para o arquivo JSON
 json_file="projects.json"
 
-# Criando o arquivo de configuração do smtp
+# Criando o arquivo de configuração do msmtp
 echo "defaults" > ~/.msmtprc
 echo "auth on" >> ~/.msmtprc
 echo "tls on" >> ~/.msmtprc
@@ -31,18 +31,15 @@ jq -c '.[]' "$json_file" | while read -r project; do
     project_name=$(echo "$project" | jq -r '.project_name')
     link_confluence=$(echo "$project" | jq -r '.link_confluence')
     email_pls=$(echo "$project" | jq -r '.email_pls')
-    email_bcc=$(echo "$project" | jq -r '.email_bcc')
 
     # Substituindo as variáveis no corpo do email
     corpo_email_formatado=$(printf "$corpo_email" "$project_name" "$link_confluence")
 
-    # Enviando email usando msmtp (com suporte ao MSTP do Outlook) 
-    # Passando os destinatários corretamente:
-    # O destinatário principal (To), CC e BCC são passados separadamente como parâmetros
+    # Enviando email usando msmtp
+    # Passando o destinatário principal (To) e o remetente (From) diretamente.
     echo -e "$corpo_email_formatado" | msmtp \
         --from="$from_email" \
-        "$email_pls" \
-        --bcc="$email_bcc"  # Passando BCC diretamente
+        "$email_pls"
 
-    echo "Email enviado para $email_pls (BCC: $email_bcc)"
+    echo "Email enviado para $email_pls"
 done

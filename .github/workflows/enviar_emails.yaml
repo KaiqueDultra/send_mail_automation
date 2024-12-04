@@ -14,16 +14,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jq msmtp
-      
-      - name: Check if json file exist
+
+      - name: Copy JSON file to work directory
         run: |
-          if [ ! -f "projects.json" ]; then
-            echo "File not found: projects.json"
-            exit 1
-          fi
-      
+          echo "$PROJECTS_JSON" > projects.json
+
       - name: Send emails
-        env:
-          OUTLOOK_APP_PASSWORD: ${{ secrets.OUTLOOK_APP_PASSWORD }}
         run: |
-            bash send_mail.sh
+          bash send_mail.sh
