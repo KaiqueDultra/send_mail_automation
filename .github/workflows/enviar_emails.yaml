@@ -6,6 +6,7 @@ on:
 jobs:
   enviar_emails:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -15,10 +16,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq msmtp
 
-      - name: Copy JSON file to work directory
+      - name: Check if projects.json exists
         run: |
-          echo "$PROJECTS_JSON" > projects.json
+          if [ ! -f "projects.json" ]; then
+            echo "Arquivo projects.json não encontrado!"
+            exit 1
+          fi
 
       - name: Send emails
+        env:
+          OUTLOOK_APP_PASSWORD: ${{ secrets.OUTLOOK_APP_PASSWORD }}  # Passando o segredo como variável de ambiente
         run: |
           bash send_mail.sh
